@@ -4,11 +4,30 @@
   <title>Faith Machine</title>
 </head>
 <body>
+
   <h1>Faith Machine</h1>
-  <p>Your system is live.</p>
+  <p>Enter a business type:</p>
+
+  <input id="inputField" type="text" placeholder="e.g. roofing, salon, gym" />
+  <button onclick="analyze()">Analyze</button>
+
+  <h2 id="result"></h2>
 
   <script>
-    console.log("Faith Machine Running");
+    function analyze() {
+      let input = document.getElementById("inputField").value;
+
+      if (input === "") {
+        document.getElementById("result").innerText = "Enter something first.";
+        return;
+      }
+
+      // Simple logic (we expand later)
+      let response = "Searching for " + input + " businesses...";
+
+      document.getElementById("result").innerText = response;
+    }
   </script>
+
 </body>
 </html>
