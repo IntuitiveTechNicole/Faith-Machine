@@ -2,30 +2,108 @@
 <html>
 <head>
   <title>Faith Machine</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f7fb;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #111;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    input {
+      width: 70%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .score {
+      font-weight: bold;
+      color: #2563eb;
+    }
+  </style>
 </head>
+
 <body>
 
   <h1>Faith Machine</h1>
-  <p>Enter a business type:</p>
 
-  <input id="inputField" type="text" placeholder="e.g. roofing, salon, gym" />
-  <button onclick="analyze()">Analyze</button>
+  <div class="box">
+    <p>Paste or enter a business type:</p>
 
-  <h2 id="result"></h2>
+    <input id="inputField" placeholder="roofing, salon, gym" />
+    <button onclick="analyze()">Analyze</button>
+
+    <h3 id="result"></h3>
+  </div>
+
+  <div class="box">
+    <h2>Active Pipeline</h2>
+
+    <div id="pipeline"></div>
+  </div>
 
   <script>
     function analyze() {
       let input = document.getElementById("inputField").value;
 
-      if (input === "") {
+      if (!input) {
         document.getElementById("result").innerText = "Enter something first.";
         return;
       }
 
-      // Simple logic (we expand later)
-      let response = "Searching for " + input + " businesses...";
+      document.getElementById("result").innerText =
+        "Analyzing " + input + " businesses...";
 
-      document.getElementById("result").innerText = response;
+      // Fake data (next we make it real)
+      let leads = [
+        { name: "Elite " + input, score: 94 },
+        { name: "Prime " + input, score: 88 }
+      ];
+
+      let container = document.getElementById("pipeline");
+      container.innerHTML = "";
+
+      leads.forEach(lead => {
+        let div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+          <span>${lead.name}</span>
+          <span class="score">${lead.score}</span>
+        `;
+        container.appendChild(div);
+      });
     }
   </script>
 
